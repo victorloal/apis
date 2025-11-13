@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credenciales de Acceso - Sistema Electoral</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 650px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e1e5e9;
+        }
+        
+        /* Header Oficial */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Contenido Principal */
+        .content {
+            padding: 40px;
+        }
+        
+        .greeting {
+            color: #1e3c72;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .alert-banner {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .alert-icon {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+        
+        /* Sección de Credenciales */
+        .credentials-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #1e3c72;
+        }
+        
+        .credential-item {
+            margin: 15px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .credential-label {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .credential-value {
+            font-family: 'Courier New', monospace;
+            background: #f1f3f4;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 15px;
+            word-break: break-all;
+        }
+        
+        /* Instrucciones de Seguridad */
+        .security-section {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .security-title {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .security-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .security-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .security-list li:before {
+            content: "🔒";
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .warning {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        
+        .button {
+            display: inline-block;
+            background: #1e3c72;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin: 10px 5px;
+        }
+        
+        @media (max-width: 600px) {
+            .content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Oficial -->
+        <div class="header">
+            <div class="logo">🏛️ SISTEMA ELECTORAL SEGURO</div>
+            <div class="subtitle">Autoridad Electoral - Comunicación Confidencial</div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="content">
+            <h1 class="greeting">Estimado/a {{nombre}},</h1>
+            
+            <p>Se le ha asignado como <strong>Autoridad Electoral</strong> para el proceso de cifrado multipartita. Adjunto encontrará sus credenciales de acceso.</p>
+            
+            <!-- Alerta de Seguridad -->
+            <div class="alert-banner">
+                <span class="alert-icon">⚠️</span>
+                <strong>INFORMACIÓN CONFIDENCIAL</strong> - Este correo contiene datos sensibles
+            </div>
+            
+            <!-- Sección de Credenciales -->
+            <div class="credentials-section">
+                <h3 style="color: #1e3c72; margin-bottom: 20px;">📋 Sus Credenciales de Acceso</h3>
+                
+                <div class="credential-item">
+                    <div class="credential-label">Contraseña de Acceso:</div>
+                    <div class="credential-value">{{password}}</div>
+                </div>
+                
+                <div class="credential-item">
+                    <div class="credential-label">Archivo Adjunto:</div>
+                    <div class="credential-value">Claves para el sifrado homorfico</div>
+                </div>
+            </div>
+            
+            <!-- Instrucciones de Seguridad -->
+            <div class="security-section">
+                <div class="security-title">🔐 Medidas de Seguridad Obligatorias</div>
+                <ul class="security-list">
+                    <li>Guarde la contraseña en un gestor seguro</li>
+                    <li>No comparta estas credenciales por ningún medio</li>
+                    <li>El archivo adjunto contiene sus llaves privadas</li>
+                    <li>Verifique la autenticidad del remitente</li>
+                    <li>Elimine este correo después de guardar la información</li>
+                </ul>
+            </div>
+            
+            <p style="text-align: center; margin: 25px 0;">
+                <strong>Proceso Electoral:</strong> {{proceso_electoral}}<br>
+                <strong>Fecha de Generación:</strong> {{fecha_generacion}}
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="warning">
+                ⚠️ ADVERTENCIA: Esta información es de carácter CONFIDENCIAL y su uso está restringido a las autoridades electorales designadas.
+            </div>
+            
+            <div class="contact-info">
+                <strong>Soporte Técnico:</strong> {{soporte}}<br>
+                <strong>Teléfono:</strong> {{telefono}}<br>
+                <strong>Horario:</strong> {{horario}}
+            </div>
+            
+            <div style="font-size: 12px; opacity: 0.8; margin-top: 15px;">
+                © 2025 Sistema Electoral Seguro. Todos los derechos reservados.<br>
+                Este es un mensaje automático, por favor no responda a este correo.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

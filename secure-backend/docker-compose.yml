@@ -1,0 +1,53 @@
+services:
+  cert-generator:
+    build: ./openssl
+    container_name: cert-generator
+    volumes:
+      - ./certs:/certs
+
+  auth-service:
+    build: ./services/auth-service
+    container_name: auth-service
+    ports:
+      - "8442:8442"
+    volumes:
+      - ./certs:/certs
+    environment:
+      - JWT_SECRET=supersecret
+      - HMAC_SECRET=hmacsecret
+    depends_on:
+      cert-generator:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "curl -k --cert /certs/auth.crt --key /certs/auth.key https://localhost:8442/health || exit 1"
+      ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  ledger-service:
+    build: ./services/ledger-service
+    container_name: ledger-service
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./certs:/certs
+    environment:
+      - JWT_SECRET=supersecret
+      - HMAC_SECRET=hmacsecret
+    depends_on:
+      cert-generator:
+        condition: service_completed_successfully
+    healthcheck:
+      test: [
+        "CMD-SHELL", 
+        "curl -k --cert /certs/ledger.crt --key /certs/ledger.key https://localhost:8443/health || exit 1"
+      ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+

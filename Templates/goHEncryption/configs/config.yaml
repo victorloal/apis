@@ -1,0 +1,38 @@
+
+he:
+  parties: 5
+  threshold: 3
+  logN: 15
+  logQ: 54
+  logP: 55
+  module: 1999699969
+
+mail:
+  url: http://127.0.0.1:8000
+
+db:
+  DB_PORT: 5432
+  DB_HOST: postgres
+  DB_USER: admin
+  DB_PASSWORD: admin123
+  DB_NAME: main_db
+
+
+app:
+  name: "Vote API"
+  version: "1.0.0"
+  environment: "development" # development, staging, production
+
+server:
+  port: ":8080"
+  read_timeout: 15
+  write_timeout: 15
+  idle_timeout: 60
+
+logging:
+  level: "info" # debug, info, warn, error
+  format: "json"
+
+features:
+  enable_swagger: false
+  enable_metrics: true

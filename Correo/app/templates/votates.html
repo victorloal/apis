@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sus Credenciales de Voto - Sistema Electoral</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Header Amigable */
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .voter-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        /* Contenido Principal */
+        .content {
+            padding: 40px;
+        }
+        
+        .greeting {
+            color: #2d3748;
+            font-size: 22px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        /* Tarjeta de Credenciales */
+        .credentials-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 12px;
+            padding: 25px;
+            color: white;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .credential-box {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .credential-label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .credential-value {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            word-break: break-all;
+        }
+        
+        /* Instrucciones Simples */
+        .instructions {
+            background: #e8f5e8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .instructions-title {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .steps li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+            margin: 8px 0;
+        }
+        
+        .steps li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+        }
+        
+        /* Sección Blockchain */
+        .blockchain-info {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .blockchain-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .blockchain-text {
+            color: #1976d2;
+            font-weight: 500;
+        }
+        
+        /* Botones de Acción */
+        .action-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .support-info {
+            color: #6c757d;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        .security-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        @media (max-width: 600px) {
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Amigable -->
+        <div class="header">
+            <div class="voter-icon">🗳️</div>
+            <div class="title">¡Su Voto Cuenta!</div>
+            <div class="subtitle">Sistema Electoral Blockchain Seguro</div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="content">
+            <h2 class="greeting">¡Hola, {nombre}!</h2>
+            
+            <div class="welcome-message">
+                Gracias por participar en nuestro proceso electoral seguro. 
+                Aquí tiene sus credenciales únicas para ejercer su derecho al voto.
+            </div>
+            
+            <!-- Tarjeta de Credenciales -->
+            <div class="credentials-card">
+                <div class="card-title">🔑 Sus Credenciales de Voto</div>
+                
+                <div class="credential-box">
+                    <div class="credential-label">Clave de Voto Única</div>
+                    <div class="credential-value">{clave_voto}</div>
+                </div>
+                
+                <div class="credential-box">
+                    <div class="credential-label">Archivo de Clave Blockchain</div>
+                    <div class="credential-value">{archivo_blockchain}</div>
+                </div>
+            </div>
+            
+            <!-- Instrucciones Simples -->
+            <div class="instructions">
+                <div class="instructions-title">📝 Cómo Usar Sus Credenciales</div>
+                <ul class="steps">
+                    <li>Guarde esta información en un lugar seguro</li>
+                    <li>Use la clave para acceder a la plataforma de votación</li>
+                    <li>El archivo adjunto es su clave personal de blockchain</li>
+                    <li>Nunca comparta estas credenciales con nadie</li>
+                    <li>Su voto es anónimo y seguro</li>
+                </ul>
+            </div>
+            
+            <!-- Información Blockchain -->
+            <div class="blockchain-info">
+                <div class="blockchain-icon">⛓️</div>
+                <div class="blockchain-text">
+                    <strong>Tecnología Blockchain:</strong> Su voto está protegido por tecnología 
+                    de cadena de bloques, garantizando transparencia y seguridad.
+                </div>
+            </div>
+            
+            <!-- Botones de Acción -->
+            <div class="action-buttons">
+                <a href="{url_plataforma}" class="btn btn-primary">Ir a la Plataforma de Voto</a>
+                <a href="{url_ayuda}" class="btn btn-secondary">Centro de Ayuda</a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="security-note">
+                🔒 <strong>Seguridad:</strong> Estas credenciales son personales e intransferibles. 
+                El sistema nunca le pedirá que las comparta.
+            </div>
+            
+            <div class="support-info">
+                <strong>¿Necesita ayuda?</strong><br>
+                Soporte técnico: soporte@votoSeguro.gov • Tel: 01-800-VOTO-SEGURO
+            </div>
+            
+            <div style="color: #6c757d; font-size: 12px; margin-top: 15px;">
+                Proceso Electoral: {proceso_electoral}<br>
+                Credenciales generadas: {fecha_generacion}<br>
+                © 2024 Sistema de Voto Blockchain Seguro
+            </div>
+        </div>
+    </div>
+</body>
+</html>

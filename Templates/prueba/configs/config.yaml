@@ -1,0 +1,12 @@
+server:
+  port: ":8080"
+  timeout: 30
+
+he:
+  parties: 5
+  threshold: 3
+  logN: 15
+  logQ: 54
+  logP: 55
+  module: 1999699969
+
