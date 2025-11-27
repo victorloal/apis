@@ -1,0 +1,11 @@
+{
+    "action": "test_action",
+    "user_type": "test_user",
+    "user_id": "test_user_123",
+    "ip_address": "192.168.1.100",
+    "user_agent": "Test-Script/1.0",
+    "details": {
+        "test_field": "test_value",
+        "timestamp": "2025-11-19T10:57:44Z"
+    }
+}

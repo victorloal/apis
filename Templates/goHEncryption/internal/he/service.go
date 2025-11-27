@@ -23,42 +23,11 @@ import (
 
 // Service define la interfaz para el servicio de saludos
 type Service interface {
-	GenerateGreeting(name string) (*GreetingResponse, error)
-	Nuevo() (*GreetingResponse, error)
 	GenerateKeys(Init Init) (*GreetingResponse, error)
 }
 
 type service struct{}
 
-// NewService crea una nueva instancia del servicio
-func NewService() Service {
-	return &service{}
-}
-
-// Prueba
-func (s *service) Nuevo() (*GreetingResponse, error) {
-
-	message := fmt.Sprintln("Hola desde Go!")
-
-	return &GreetingResponse{
-		Message: message,
-		Status:  "success",
-	}, nil
-}
-
-// GenerateGreeting genera un saludo personalizado
-func (s *service) GenerateGreeting(name string) (*GreetingResponse, error) {
-	if name == "" {
-		return nil, fmt.Errorf("el nombre no puede estar vacío")
-	}
-
-	message := fmt.Sprintf("Hola %s desde Go!", name)
-
-	return &GreetingResponse{
-		Message: message,
-		Status:  "success",
-	}, nil
-}
 
 
 func encryptAESGCM(data []byte, key []byte) ([]byte, error) {
@@ -78,11 +47,11 @@ func encryptAESGCM(data []byte, key []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
-
+// Enviar correo con archivo encriptado
 func sendAE(ae Ae, party Party) error {
-url := "http://127.0.0.1:8000/send/ae"
+	url := "http://127.0.0.1:8000/send/ae"
 
-fmt.Printf("%+v\n", party)
+	fmt.Printf("%+v\n", party)
 	// === 1. Serializar la party a JSON ===
 	partyData, err := json.MarshalIndent(party, "", "  ")
 	if err != nil {
@@ -164,14 +133,13 @@ func (s *service) GenerateKeys(init Init) (*GreetingResponse, error) {
 
 	for i := 0; i < len(parties); i++ {
 		list[i].IdParty = parties[i].Id
-		//enviar parties por esta direcion http://127.0.0.1:8000/send/ae
 		
+		//enviar parties a cada AE
 		sendAE(list[i], *parties[i])
-
-
 	}
 
 	// guardar Init en base de datos
+	
 
 	message := fmt.Sprintln("Procesado")
 

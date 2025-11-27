@@ -1,0 +1,8 @@
+{
+    "name": "Test Election 20251119055743",
+    "description": "This is a test election created by API test script",
+    "encrypted": true,
+    "status": 1,
+    "start_date": "2025-11-19T10:57:43Z",
+    "end_date": "2025-12-19T10:57:43Z"
+}

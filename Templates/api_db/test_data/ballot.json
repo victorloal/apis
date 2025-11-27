@@ -1,0 +1,10 @@
+{
+    "id": "test-ballot-1763549863",
+    "vote": {
+        "candidate_id": 1,
+        "timestamp": "2025-11-19T10:57:44Z",
+        "encrypted_vote": "encrypted-data-here"
+    },
+    "voting_device_fingerprint": "device-fingerprint-123",
+    "ip_address": "192.168.1.100"
+}

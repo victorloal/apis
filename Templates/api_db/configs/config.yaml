@@ -1,0 +1,13 @@
+server:
+  port: ":8000"
+
+database:
+  host: "postgres"
+  port: 5432
+  user: "admin"
+  password: "admin123"
+  dbname: "voting_system"
+  sslmode: "disable"
+
+app:
+  env: "development"
