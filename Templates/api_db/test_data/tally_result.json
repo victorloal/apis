@@ -1,0 +1,12 @@
+{
+    "results": {
+        "candidate_1": 150,
+        "candidate_2": 200
+    },
+    "total_votes": 350,
+    "computed_by": "test-script",
+    "proof": {
+        "verification": "success",
+        "timestamp": "2025-11-19T10:57:44Z"
+    }
+}

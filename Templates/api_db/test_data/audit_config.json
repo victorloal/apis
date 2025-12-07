@@ -1,0 +1,4 @@
+{
+    "enable_ballot_audit": true,
+    "enable_access_logs": true
+}

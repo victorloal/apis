@@ -1,0 +1,9 @@
+{
+    "p_key": "cHVibGljLWtleS1kYXRh",
+    "params": {
+        "scheme": "BFV",
+        "poly_modulus_degree": 4096,
+        "coeff_modulus_bits": [40, 40, 40],
+        "plain_modulus": 1024
+    }
+}

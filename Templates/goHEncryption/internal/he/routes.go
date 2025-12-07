@@ -13,6 +13,7 @@ func SetupRoutes(router *mux.Router) {
 	handler.RegisterRoutes(apiRouter)
 }
 
+
 // RegisterRoutes registra las rutas para este handler
 func (h *Handler) RegisterRoutes(router *mux.Router) {
 	router.HandleFunc("/greet", h.GreetHandler).Methods("GET", "POST")

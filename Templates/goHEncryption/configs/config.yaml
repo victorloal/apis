@@ -15,7 +15,7 @@ db:
   DB_HOST: postgres
   DB_USER: admin
   DB_PASSWORD: admin123
-  DB_NAME: main_db
+  DB_NAME: voting_system
 
 
 app:

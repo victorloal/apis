@@ -1,15 +1,20 @@
 version: "3.9"
 
 services:
+
   postgres:
     image: postgres:latest
     container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: voting_system
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql
       - ./DB/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "5432:5432"
+      - "5431:5432"
     networks:
       - app_network
 
@@ -37,6 +42,22 @@ services:
       - ./Correo/app:/app/app 
     networks:
       - app_network
+
+  
+  api_db:
+    build: ./Templates/api_db
+    container_name: api_db
+    restart: always
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./Templates/api_db/app:/app/app 
+    networks:
+      - app_network
+    depends_on:
+      - postgres
+
+  
 
 volumes:
   postgres_data:
