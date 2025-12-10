@@ -1,36 +1,11 @@
 version: "3.9"
 
+
 services:
 
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: voting_system
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql
-      - ./DB/init.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5431:5432"
-    networks:
-      - app_network
-
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: my_pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-    networks:
-      - app_network
+  # -------------------------------
+  # Correo API
+  # -------------------------------
 
   correo_api:
     build: ./Correo
@@ -41,28 +16,79 @@ services:
     volumes:
       - ./Correo/app:/app/app 
     networks:
-      - app_network
+      - basic
 
   
-  api_db:
-    build: ./Templates/api_db
-    container_name: api_db
+  # -------------------------------
+  # Postgres Database
+  # -------------------------------
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: votaciones_db
     restart: always
-    ports:
-      - "8001:8000"
     volumes:
-      - ./Templates/api_db/app:/app/app 
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"   # solo si quieres acceder desde tu PC
     networks:
-      - app_network
+      - basic
+
+  # -------------------------------
+  # APISIX Gateway
+  # -------------------------------
+  apisix:
+    image: apache/apisix:latest
+
+    depends_on:
+      - backend-crud
+      # - vote
+    volumes:
+      - ./apisix_conf/config.yaml:/usr/local/apisix/conf/config.yaml
+    ports:
+      - "80:9080"
+    networks:
+      - basic
+
+  # -------------------------------
+  # Backend de Crud (Auth)
+  # -------------------------------
+  backend-crud:
+    build: ./backend-crud
+    container_name: backend-crud
+    env_file:
+      - ./backend-crud/.env
+    networks:
+      - basic
     depends_on:
       - postgres
+    ports:
+      - "4000:4000"
 
-  
+  # -------------------------------
+  # Backend Go (Lógica)
+  # -------------------------------
+  # vote:
+  #   build:
+  #     context: ./vote            # <--- Ruta a la carpeta vote/
+  #   env_file:
+  #     - ./vote/.env
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - basic
 
+# -------------------------------
+# Volúmenes y redes
+# -------------------------------
 volumes:
   postgres_data:
 
-
 networks:
-  app_network:
+  basic:
     driver: bridge

@@ -1,0 +1,14 @@
+etcd:
+  host:
+    - "http://etcd:2379"
+  prefix: "/apisix"
+  timeout: 30
+
+apisix:
+  base_url: "http://apisix:9080"
+  admin_key: "edd1c9f034335f136f87ad84b625c8f1"
+
+dashboard:
+  listen:
+    ip: "0.0.0.0"
+    port: 9000
